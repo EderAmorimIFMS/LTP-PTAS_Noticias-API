@@ -1,0 +1,68 @@
+body {
+  padding: 0;
+  margin: 0;
+  background-color: gray;
+}
+
+/*Div que contem todos os elementos/ esta no Html*/
+#lista{
+  align-items: center;
+  text-align: center;
+}
+
+/*Div como se fosse um Header/ esta no js*/
+#head, footer {
+  background-color: #a52a2a;
+}
+
+/*H1 do site Noticias de Hoje!/ esta do js*/
+#TituloSite{
+  color: #fff;
+  text-decoration: underline; 
+  text-align: center;
+}
+
+/*h1 das div da noticia destaque e noticia/ esta no js*/
+#Ntitulo{
+  color: #a52a2a;
+  text-decoration: underline; 
+  text-align: center;
+}
+
+/*Divs de todas as noticias/ esta no js*/
+#destaque, #Ncards {
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #000;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+}
+
+/*Esta é a imagem/ esta no js*/
+#imagem {
+  width: 70%;
+}
+
+/*Este é a data da publicacão e o autor/ esta no js*/
+p {
+  font-size: 10px;
+  color: #787878;
+  text-align: left;
+}
+
+/*Resumo das noticias secundarias*/
+#Nresumo{
+  text-align: left;
+}
+
+/*Este é o link (Clique aqui...)/ esta no js*/
+a{
+  color:#a52a2a;
+}
+
+/*Este é o H3 que está no footer/ esta no html*/
+#Palavrasfooter {
+  padding: 50px;
+  color: #fff;
+}

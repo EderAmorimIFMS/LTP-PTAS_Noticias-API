@@ -7,7 +7,6 @@ body {
 /*Div que contem todos os elementos/ esta no Html*/
 #lista{
   align-items: center;
-  text-align: center;
 }
 
 /*Div como se fosse um Header/ esta no js*/
@@ -30,7 +29,7 @@ body {
 }
 
 /*Divs de todas as noticias/ esta no js*/
-#destaque, #Ncards {
+#destaque, #Ncards, #ERRO {
   margin: 20px;
   padding: 10px;
   border: 1px solid #000;
@@ -41,7 +40,8 @@ body {
 
 /*Esta é a imagem/ esta no js*/
 #imagem {
-  width: 70%;
+  width: 50%;
+  height: 50%;
 }
 
 /*Este é a data da publicacão e o autor/ esta no js*/

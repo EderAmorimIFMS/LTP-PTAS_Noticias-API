@@ -45,26 +45,27 @@ requisicao.onload = function() {
       return this.link;
     }
 
-    mostrar_Noticias() {
+   mostrar_Noticias() {
       if(this.titulo == undefined || this.dataPublicacao == undefined || this.autor == undefined || this.resumo == undefined ){
         throw new ErrorCustomizado("É provavel que os atributos titulo, data de publicacão, autor ou resumo estejam vazios!");
         
       }else{
       return `<div id="Ncards">                            
-              <h1 id="Ntitulo">${this.titulo}<h1>                                                    <p>Publicado em: ${this.dataPublicacao}<p>                 
+              <h1 id="Ntitulo">${this.titulo}<h1>                                                             
+              <p>Publicado em: ${this.dataPublicacao}<p>                 
               <p>Por: ${this.autor}<p>                                   
               <h5 id="Nresumo">${this.resumo}<h5>                     
-              <a href="${this.link}">(Clique aqui, para ir ao site original)<a>                      <div>`      
+              <a href="${this.link}">(Clique aqui, para ir ao site original)<a>                               <div>`;
       }
-}
+   }
     
-    Noticias(){
+   Noticias(){
       try{ 
         return this.mostrar_Noticias();
       }catch(erro){
         return erro.stack;
       }
-    }
+   }
   }
   
 
@@ -76,40 +77,40 @@ requisicao.onload = function() {
     getimagem() {
       return this.imagem;
     }
-
     //Criei outro metodo porque nesse é adicionado a Imagem que é pedido somente na Noticia Destaque
-    mostra_Destaque() {
-       if(this.titulo == undefined || this.dataPublicacao == undefined || this.autor == undefined || this.resumo == undefined ){
+   mostrar_Destaque() {
+      if(this.titulo == undefined || this.dataPublicacao == undefined || this.autor == undefined || this.resumo == undefined ){
         throw new ErrorCustomizado("É provavel que os atributos titulo, data de publicacão, autor ou resumo estejam vazios!");
       }else{
       return `<div id="destaque">
               <h1 id="Ntitulo">${this.titulo}<h1>
               <img id="imagem" src=${this.imagem}>             
               <p>Publicado em: ${this.dataPublicacao}<p>                             
-              <p>Por: ${this.autor}<p>                                                               <h5 id="Nresumo">${this.resumo}<h5>                                    
-              <a href="${this.link}">(Clique aqui, para ir ao site original)<a>                      <div>`    
+              <p>Por: ${this.autor}<p>                                                                                 
+              <h5 id="Nresumo">${this.resumo}<h5>                                    
+              <a href="${this.link}">(Clique aqui, para ir ao site original)<a>                                        
+              <div>`;
       }
-    }
+   }
 
-    Destaque(){
+   Destaque(){
       try{
-        return this.mostra_Destaque();
+        return this.mostrar_Destaque();
         
       }catch(erro){
         return erro.stack;
 
       }
-    }
+   }
 
   }
 
-
   //Classe ErrorCustomizado hedando do Error
   class ErrorCustomizado extends Error{
-     constructor(menssagem){
-        super(menssagem)
-         this.name = "Atributos vazios";
-     }
+    constructor(menssagem){
+       super(menssagem)
+         this.name = "Atributos Vazios";
+    }                                                                                 
   }
 
   
@@ -121,9 +122,8 @@ requisicao.onload = function() {
   elemento.insertAdjacentHTML('afterbegin', titulo);
 
 //Criando o Objeto com a classe Noticia_Destaque
-  let noticiaDestaque = new Noticia_Destaque()
-  
-//Aqui o titulo ou outros é escrito(pego) usando o articles(que seria o Array) no indice 0(para pegar a primeira noticia).
+  let noticiaDestaque = new Noticia_Destaque();
+  //Aqui o titulo ou outros é escrito(pego) usando o articles(que seria o Array) no indice 0(para pegar a primeira noticia).
   noticiaDestaque.settitulo(noticias_Json.articles[0].title);
   noticiaDestaque.setimagem(noticias_Json.articles[0].urlToImage);
   noticiaDestaque.setdataPublicacao(noticias_Json.articles[0].publishedAt);
@@ -136,17 +136,18 @@ requisicao.onload = function() {
   
 //Aqui o titulo ou outros é escrito(pego) usando o for começando no articles(que seria o Array) no indice 1(para pegar a segunda noticia em diante até a ultima).
   for (let i = 1; i < noticias_Json.articles.length; i++) {
-    elem = noticias_Json.articles[i]
-    //Criando o objeto com a classe Noticias
-    let noticiaInteira = new Noticia();
-    noticiaInteira.settitulo(elem.title)
-    noticiaInteira.setdataPublicacao(elem.publishedAt);
-    noticiaInteira.setautor(elem.author);
-    noticiaInteira.setresumo(elem.description);
-    noticiaInteira.setlink(elem.url)
+  elem = noticias_Json.articles[i]
+  //Criando o objeto com a classe Noticias
+  let noticiaInteira = new Noticia();
+  noticiaInteira.settitulo(elem.title)
+  noticiaInteira.setdataPublicacao(elem.publishedAt);
+  noticiaInteira.setautor(elem.author);
+  noticiaInteira.setresumo(elem.description);
+  noticiaInteira.setlink(elem.url)
 
   //adiciona todas as noticias pequenas no html com o metodo mostrar noticias
-    elemento.insertAdjacentHTML('beforeend', noticiaInteira.Noticias());
+  elemento.insertAdjacentHTML('beforeend', noticiaInteira.Noticias());
+
   }
 }
 

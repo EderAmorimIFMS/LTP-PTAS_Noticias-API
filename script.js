@@ -51,17 +51,15 @@ requisicao.onload = function() {
         
       }else{
       return `<div id="Ncards">                            
-              <h1 id="Ntitulo">${this.titulo}<h1>                                                                        
-              <p>Publicado em: ${this.dataPublicacao}<p>                 
+              <h1 id="Ntitulo">${this.titulo}<h1>                                                    <p>Publicado em: ${this.dataPublicacao}<p>                 
               <p>Por: ${this.autor}<p>                                   
               <h5 id="Nresumo">${this.resumo}<h5>                     
-              <a href="${this.link}">(Clique aqui, para ir ao site original)<a>                                    
-              <div>`      
+              <a href="${this.link}">(Clique aqui, para ir ao site original)<a>                      <div>`      
       }
 }
     
     Noticias(){
-      try{
+      try{ 
         return this.mostrar_Noticias();
       }catch(erro){
         return erro.stack;
@@ -87,10 +85,9 @@ requisicao.onload = function() {
       return `<div id="destaque">
               <h1 id="Ntitulo">${this.titulo}<h1>
               <img id="imagem" src=${this.imagem}>             
-              <p>Publicado em: ${this.dataPublicacao}<p>                                               <p>Por: ${this.autor}<p>                                  
-              <h5 id="Nresumo">${this.resumo}<h5>                                   
-              <a href="${this.link}">(Clique aqui, para ir ao site original)<a>                   
-              <div>`    
+              <p>Publicado em: ${this.dataPublicacao}<p>                             
+              <p>Por: ${this.autor}<p>                                                               <h5 id="Nresumo">${this.resumo}<h5>                                    
+              <a href="${this.link}">(Clique aqui, para ir ao site original)<a>                      <div>`    
       }
     }
 
@@ -125,18 +122,19 @@ requisicao.onload = function() {
 
 //Criando o Objeto com a classe Noticia_Destaque
   let noticiaDestaque = new Noticia_Destaque()
+  
 //Aqui o titulo ou outros é escrito(pego) usando o articles(que seria o Array) no indice 0(para pegar a primeira noticia).
-
-noticiaDestaque.settitulo(noticias_Json.articles[0].title);
+  noticiaDestaque.settitulo(noticias_Json.articles[0].title);
   noticiaDestaque.setimagem(noticias_Json.articles[0].urlToImage);
   noticiaDestaque.setdataPublicacao(noticias_Json.articles[0].publishedAt);
   noticiaDestaque.setautor(noticias_Json.articles[0].author);
   noticiaDestaque.setresumo(noticias_Json.articles[0].description);
-  noticiaDestaque.setlink(noticias_Json.articles[0].url);
+  noticiaDestaque.setlink(noticias_Json.articles[0].url);  
 
+//adiciona o codigo do metodo mostar noticas destque já com todos os valores dos atributos
   elemento.insertAdjacentHTML('beforeend', noticiaDestaque.Destaque())
   
-//Aqui o titulo ou outros é escrito(pego) usando o articles(que seria o Array) no indice 0(para pegar a primeira noticia).
+//Aqui o titulo ou outros é escrito(pego) usando o for começando no articles(que seria o Array) no indice 1(para pegar a segunda noticia em diante até a ultima).
   for (let i = 1; i < noticias_Json.articles.length; i++) {
     elem = noticias_Json.articles[i]
     //Criando o objeto com a classe Noticias
@@ -146,7 +144,8 @@ noticiaDestaque.settitulo(noticias_Json.articles[0].title);
     noticiaInteira.setautor(elem.author);
     noticiaInteira.setresumo(elem.description);
     noticiaInteira.setlink(elem.url)
-    
+
+  //adiciona todas as noticias pequenas no html com o metodo mostrar noticias
     elemento.insertAdjacentHTML('beforeend', noticiaInteira.Noticias());
   }
 }

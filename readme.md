@@ -1,3 +1,5 @@
-Éder da Silva Amorim
-
-Turma: info 3A
+# LTP-PTAS_Noticias-API 
+### Tecnologias Usadas: 
+- HTML
+- JavaScript
+- CSS

@@ -6,7 +6,7 @@ requisicao.responseType = "json";
 requisicao.send();
 
 requisicao.onload = function() {
-  let noticias_Json = requisicao.response;
+  let noticiasJson = requisicao.response;
 
   //Classe noticia 
   class Noticia {
@@ -122,30 +122,30 @@ requisicao.onload = function() {
   elemento.insertAdjacentHTML('afterbegin', titulo);
 
 //Criando o Objeto com a classe Noticia_Destaque
+//Aqui o titulo ou outros é escrito(pego) usando o articles(que seria o Array) no indice 0(para pegar a primeira noticia).
   let noticiaDestaque = new Noticia_Destaque();
-  //Aqui o titulo ou outros é escrito(pego) usando o articles(que seria o Array) no indice 0(para pegar a primeira noticia).
-  noticiaDestaque.settitulo(noticias_Json.articles[0].title);
-  noticiaDestaque.setimagem(noticias_Json.articles[0].urlToImage);
-  noticiaDestaque.setdataPublicacao(noticias_Json.articles[0].publishedAt);
-  noticiaDestaque.setautor(noticias_Json.articles[0].author);
-  noticiaDestaque.setresumo(noticias_Json.articles[0].description);
-  noticiaDestaque.setlink(noticias_Json.articles[0].url);  
+  noticiaDestaque.settitulo(noticiasJson.articles[0].title);
+  noticiaDestaque.setimagem(noticiasJson.articles[0].urlToImage);
+  noticiaDestaque.setdataPublicacao(noticiasJson.articles[0].publishedAt);
+  noticiaDestaque.setautor(noticiasJson.articles[0].author);
+  noticiaDestaque.setresumo(noticiasJson.articles[0].description);
+  noticiaDestaque.setlink(noticiasJson.articles[0].url);  
 
-//adiciona o codigo do metodo mostar noticas destque já com todos os valores dos atributos
-  elemento.insertAdjacentHTML('beforeend', noticiaDestaque.Destaque())
+  elemento.insertAdjacentHTML('beforeend', noticiaDestaque.Destaque());
+
   
 //Aqui o titulo ou outros é escrito(pego) usando o for começando no articles(que seria o Array) no indice 1(para pegar a segunda noticia em diante até a ultima).
-  for (let i = 1; i < noticias_Json.articles.length; i++) {
-  elem = noticias_Json.articles[i]
-  //Criando o objeto com a classe Noticias
-  let noticiaInteira = new Noticia();
-  noticiaInteira.settitulo(elem.title)
-  noticiaInteira.setdataPublicacao(elem.publishedAt);
-  noticiaInteira.setautor(elem.author);
-  noticiaInteira.setresumo(elem.description);
-  noticiaInteira.setlink(elem.url)
+  for (let i = 1; i < noticiasJson.articles.length; i++) {
+  item = noticiasJson.articles[i];
 
-  //adiciona todas as noticias pequenas no html com o metodo mostrar noticias
+//Criando o objeto com a classe Noticias
+  let noticiaInteira = new Noticia();
+  noticiaInteira.settitulo(item.title);
+  noticiaInteira.setdataPublicacao(item.publishedAt);
+  noticiaInteira.setautor(item.author);
+  noticiaInteira.setresumo(item.description);
+  noticiaInteira.setlink(item.url);
+
   elemento.insertAdjacentHTML('beforeend', noticiaInteira.Noticias());
 
   }
